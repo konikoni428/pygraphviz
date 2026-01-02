@@ -118,7 +118,6 @@ test-command = "python -c 'import pygraphviz; print(pygraphviz.__version__)'"
 [tool.cibuildwheel.macos]
 # Build for both Intel and Apple Silicon
 before-all = "brew install graphviz"
-environment = { MACOSX_DEPLOYMENT_TARGET='14.0' }
 
 [tool.cibuildwheel.linux]
 # Use manylinux2014 for compatibility
