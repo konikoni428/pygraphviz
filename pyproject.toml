@@ -126,6 +126,6 @@ before-all = "choco install -y graphviz"
 before-build = "pip install delvewheel"
 repair-wheel-command = "delvewheel repair -w {dest_dir} {wheel}"
 
-[[tool.cibuildwheel.windows.overrides]]
+[[tool.cibuildwheel.overrides]]
 select = "*-win32"
 before-all = "choco install -y graphviz --forcex86"
