@@ -20,7 +20,7 @@ jobs:
           - os: windows-arm
             runs-on: windows-11-arm
           - os: macos-arm
-            runs-on: macos-latest
+            runs-on: macos-14
           # - os: pyodide
           #   runs-on: ubuntu-latest
           #   platform: pyodide
