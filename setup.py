@@ -21,6 +21,8 @@ if __name__ == "__main__":
         "/opt/homebrew/opt/graphviz/lib/",
         "/usr/lib64",  # Fedora
         "/usr/lib64/graphviz",
+        "/usr/lib",  # generic linux
+        "/usr/lib/graphviz",
         "/usr/local/lib",  # source install / macos homebrew x86_64
         "/usr/local/lib/graphviz",
     ]
@@ -28,6 +30,11 @@ if __name__ == "__main__":
     include_dirs = []
     if DARWIN:
         include_dirs.append("/opt/homebrew/opt/graphviz/include")
+    elif WINDOWS:
+        include_dirs.extend([
+            "C:\\Program Files\\Graphviz\\include",
+            "C:\\Program Files (x86)\\Graphviz\\include",
+        ])
 
     # runtime_library_dirs must not be defined with windows else setup will fail
     extra_kwargs = {} if WINDOWS else {"runtime_library_dirs": library_search_paths}
