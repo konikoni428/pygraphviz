@@ -121,7 +121,7 @@ before-all = "brew install graphviz"
 
 [tool.cibuildwheel.linux]
 # Use manylinux2014 for compatibility
-before-all = "if command -v yum &> /dev/null; then yum install -y graphviz-devel; else apt-get update && apt-get install -y graphviz-dev; fi"
+before-all = "if command -v yum &> /dev/null; then yum install -y graphviz-devel; elif command -v apt-get &> /dev/null; then apt-get update && apt-get install -y graphviz-dev; elif command -v apk &> /dev/null; then apk add --no-cache graphviz-dev; fi"
 
 [tool.cibuildwheel.windows]
 before-all = "powershell {project}\\ci\\install_graphviz_windows.ps1"
