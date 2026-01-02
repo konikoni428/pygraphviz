@@ -13,28 +13,40 @@ if __name__ == "__main__":
     # The graphviz library subdir contains the plugin libraries (e.g.
     # gvplugin_*). The main graphviz libs (cgraph etc.) are in the
     # parent dir
-    library_search_paths = [
-        "/usr/lib/x86_64-linux-gnu",  # Ubuntu x86_64
-        "/usr/lib/x86_64-linux-gnu/graphviz",
-        "/opt/homebrew/lib",  # Macos, homebrew aarch64
-        "/opt/homebrew/lib/graphviz",
-        "/opt/homebrew/opt/graphviz/lib/",
-        "/usr/lib64",  # Fedora
-        "/usr/lib64/graphviz",
-        "/usr/lib",  # generic linux
-        "/usr/lib/graphviz",
-        "/usr/local/lib",  # source install / macos homebrew x86_64
-        "/usr/local/lib/graphviz",
-    ]
+    if WINDOWS:
+        library_search_paths = [
+            "C:\\Program Files\\Graphviz\\lib",
+            "C:\\Program Files (x86)\\Graphviz\\lib",
+        ]
+    elif DARWIN:
+        library_search_paths = [
+            "/opt/homebrew/lib",  # homebrew aarch64
+            "/opt/homebrew/lib/graphviz",
+            "/opt/homebrew/opt/graphviz/lib/",
+            "/usr/local/lib",  # source install / homebrew x86_64
+            "/usr/local/lib/graphviz",
+        ]
+    else:  # Linux
+        library_search_paths = [
+            "/usr/lib/x86_64-linux-gnu",  # Ubuntu x86_64
+            "/usr/lib/x86_64-linux-gnu/graphviz",
+            "/usr/lib64",  # Fedora
+            "/usr/lib64/graphviz",
+            "/usr/lib",  # generic linux
+            "/usr/lib/graphviz",
+        ]
 
-    include_dirs = []
-    if DARWIN:
-        include_dirs.append("/opt/homebrew/opt/graphviz/include")
-    elif WINDOWS:
-        include_dirs.extend([
+    if WINDOWS:
+        include_dirs = [
             "C:\\Program Files\\Graphviz\\include",
             "C:\\Program Files (x86)\\Graphviz\\include",
-        ])
+        ]
+    elif DARWIN:
+        include_dirs = [
+            "/opt/homebrew/opt/graphviz/include",
+        ]
+    else:  # Linux
+        include_dirs = []
 
     # runtime_library_dirs must not be defined with windows else setup will fail
     extra_kwargs = {} if WINDOWS else {"runtime_library_dirs": library_search_paths}
