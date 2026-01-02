@@ -7,7 +7,6 @@ jobs:
   build:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.runs-on }}
-    env: ${{ matrix.env || {} }}
 
     strategy:
       fail-fast: false
@@ -23,8 +22,7 @@ jobs:
             runs-on: windows-11-arm
           - os: macos-arm
             runs-on: macos-14
-            env:
-              MACOSX_DEPLOYMENT_TARGET: '14.0' 
+            MACOSX_DEPLOYMENT_TARGET: '14.0' 
 
           # - os: pyodide
           #   runs-on: ubuntu-latest
@@ -38,6 +36,7 @@ jobs:
         env:
           CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
           CIBW_ARCHS: ${{ matrix.archs || 'auto' }}
+          MACOSX_DEPLOYMENT_TARGET: ${{ matrix.MACOSX_DEPLOYMENT_TARGET || '' }}
   
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v4
