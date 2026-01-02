@@ -19,8 +19,6 @@ if __name__ == "__main__":
         "/opt/homebrew/lib/graphviz",
         "/usr/lib64",  # Fedora
         "/usr/lib64/graphviz",
-        "/usr/lib",  # generic linux
-        "/usr/lib/graphviz",
         "/usr/local/lib",  # source install / macos homebrew x86_64
         "/usr/local/lib/graphviz",
     ]
