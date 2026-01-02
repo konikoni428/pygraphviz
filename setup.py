@@ -16,6 +16,7 @@ if __name__ == "__main__":
     if WINDOWS:
         library_search_paths = [
             "C:\\Program Files\\Graphviz\\lib",
+            "C:\\Program Files (x86)\\Graphviz\\lib",
         ]
     elif DARWIN:
         library_search_paths = [
@@ -38,6 +39,7 @@ if __name__ == "__main__":
     if WINDOWS:
         include_dirs = [
             "C:\\Program Files\\Graphviz\\include",
+            "C:\\Program Files (x86)\\Graphviz\\include",
         ]
     elif DARWIN:
         include_dirs = [
