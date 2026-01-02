@@ -21,9 +21,9 @@ jobs:
             runs-on: windows-11-arm
           - os: macos-arm
             runs-on: macos-latest
-          - os: pyodide
-            runs-on: ubuntu-latest
-            platform: pyodide
+          # - os: pyodide
+          #   runs-on: ubuntu-latest
+          #   platform: pyodide
 
     steps:
       - uses: actions/checkout@v5
