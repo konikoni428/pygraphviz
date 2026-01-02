@@ -128,4 +128,4 @@ repair-wheel-command = "delvewheel repair -w {dest_dir} {wheel}"
 
 [[tool.cibuildwheel.overrides]]
 select = "*-win32"
-before-all = "curl -L -o graphviz-install-32.exe https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.1/windows_10_cmake_Release_graphviz-install-14.1.1-win32.exe && ./graphviz-install-32.exe /S"
+before-all = "curl -L -o graphviz-install-32.exe https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.1/windows_10_cmake_Release_graphviz-install-14.1.1-win32.exe && graphviz-install-32.exe /S"
