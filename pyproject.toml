@@ -107,3 +107,21 @@ ignore = [
 
 [tool.ruff.format]
 docstring-code-format = true
+
+[tool.cibuildwheel]
+archs = ["auto"]
+build = "*"
+build-frontend = "build"
+test-requires = []
+test-command = "python -c 'import pygraphviz; print(pygraphviz.__version__)'"
+
+[tool.cibuildwheel.macos]
+# Build for both Intel and Apple Silicon
+before-all = "brew install graphviz"
+
+[tool.cibuildwheel.linux]
+# Use manylinux2014 for compatibility
+before-all = "apt-get install graphviz"
+
+[tool.cibuildwheel.windows]
+before-all = "powershell {project}\\ci\\install_graphviz_windows.ps1"

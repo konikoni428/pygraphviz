@@ -1,0 +1,42 @@
+name: Build wheels with cibuildwheel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.runs-on }}
+
+    strategy:
+      matrix:
+        include:
+          - os: linux-x86_64
+            runs-on: ubuntu-latest
+          # - os: linux-arm
+          #   runs-on: ubuntu-24.04-arm
+          # - os: windows-x86_64
+          #   runs-on: windows-latest
+          # - os: windows-arm
+          #   runs-on: windows-11-arm
+          # - os: macos-arm
+          #   runs-on: macos-latest
+          # - os: pyodide
+          #   runs-on: ubuntu-latest
+          #   platform: pyodide
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build
+        uses: pypa/cibuildwheel@v3.3.0
+        env:
+          CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
+          CIBW_ARCHS: ${{ matrix.archs || 'auto' }}
+  
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pitct-${{ runner.os }}-${{ strategy.job-index }}
+          path: ./wheelhouse/*.whl
+          retention-days: 7
