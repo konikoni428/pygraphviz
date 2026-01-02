@@ -126,6 +126,9 @@ before-all = "choco install -y graphviz"
 before-build = "pip install delvewheel"
 repair-wheel-command = "delvewheel repair --add-path \"C:\\Program Files\\Graphviz\\bin\" -w {dest_dir} {wheel}"
 
+[tool.cibuildwheel.pyodide]
+before-all = "if command -v yum &> /dev/null; then yum install -y graphviz-devel; elif command -v apt-get &> /dev/null; then apt-get update && apt-get install -y graphviz-dev; elif command -v apk &> /dev/null; then apk add --no-cache graphviz graphviz-dev; fi"
+
 [[tool.cibuildwheel.overrides]]
 select = "*-win32"
 before-all = "curl -L -o graphviz-install-32.exe https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/14.1.1/windows_10_cmake_Release_graphviz-install-14.1.1-win32.exe && graphviz-install-32.exe /S"
