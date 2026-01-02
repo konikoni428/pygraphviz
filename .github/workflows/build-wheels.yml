@@ -16,9 +16,9 @@ jobs:
           #   runs-on: ubuntu-latest
           # - os: linux-arm
           #   runs-on: ubuntu-24.04-arm
-          - os: windows-x86
-            runs-on: windows-latest
-            archs: "auto32"
+          # - os: windows-x86
+          #   runs-on: windows-latest
+          #   archs: "auto32"
           # - os: windows-x86_64
           #   runs-on: windows-latest
           #   archs: "auto64"
@@ -28,9 +28,9 @@ jobs:
           #   runs-on: macos-14
           #   MACOSX_DEPLOYMENT_TARGET: '14.0' 
 
-          # - os: pyodide
-          #   runs-on: ubuntu-latest
-          #   platform: pyodide
+          - os: pyodide
+            runs-on: ubuntu-latest
+            platform: pyodide
 
     steps:
       - uses: actions/checkout@v5
