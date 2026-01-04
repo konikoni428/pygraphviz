@@ -34,6 +34,8 @@ if __name__ == "__main__":
             "/usr/lib64/graphviz",
             "/usr/lib",  # generic linux
             "/usr/lib/graphviz",
+            "/tmp/local/lib",  # custom local build
+            "/tmp/local/lib/graphviz",
         ]
 
     if WINDOWS:
@@ -46,7 +48,9 @@ if __name__ == "__main__":
             "/opt/homebrew/opt/graphviz/include",
         ]
     else:  # Linux
-        include_dirs = []
+        include_dirs = [
+            "/tmp/local/include",  # custom local build
+        ]
 
     # runtime_library_dirs must not be defined with windows else setup will fail
     extra_kwargs = {} if WINDOWS else {"runtime_library_dirs": library_search_paths}
