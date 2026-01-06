@@ -112,8 +112,8 @@ docstring-code-format = true
 archs = ["auto"]
 build = "*"
 build-frontend = "build"
-test-requires = []
-test-command = "python -c \"import pygraphviz; print(pygraphviz.__version__)\""
+before-test = "pip install -r requirements/test.txt"
+test-command = "pytest {project}/pygraphviz"
 
 [tool.cibuildwheel.macos]
 before-all = "brew install graphviz"
